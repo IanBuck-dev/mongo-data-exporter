@@ -5,8 +5,7 @@ from pymongo import MongoClient
 import os
 import datetime
 import pandas as pd
-from azure.identity import DefaultAzureCredential
-from azure.storage.blob import BlobServiceClient, ContentSettings
+from azure.storage.blob import BlobServiceClient
 
 app = func.FunctionApp()
 
@@ -40,6 +39,6 @@ def MongoSensorDataExporter(myTimer: func.TimerRequest) -> None:
 
     container_name = 'sensor-data'
     container_client = blob_service_client.get_container_client(container=container_name)
-    container_client.upload_blob(name=filename, data=csv_data, content_settings=ContentSettings(content_type='text/csv'), overwrite=True)
+    container_client.upload_blob(name=filename, data=csv_data, overwrite=True)
 
     logging.info('Mongo exporter timer trigger function ran at %s', utc_timestamp)
