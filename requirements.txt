@@ -3,7 +3,6 @@
 # Manually managing azure-functions-worker may cause unexpected issues
 
 datetime
-logging
 azure-functions
 pymongo
 pandas
